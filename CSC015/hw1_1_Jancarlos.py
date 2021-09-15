@@ -14,6 +14,7 @@ def art():
     print("\ \________\ \_______\ ")
     print(" \|________|\|_______| ")
                       
+                      
 def main():
     #Prints art
     art()
