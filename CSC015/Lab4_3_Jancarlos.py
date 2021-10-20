@@ -25,6 +25,7 @@ def main():
         dice_one = r.randint(1,6)
         dice_two = r.randint(1,6)
 
+        #Convert the sum into a string
         dice_sum_str = str(dice_one + dice_two)
 
         #Increment the amount of rolls
