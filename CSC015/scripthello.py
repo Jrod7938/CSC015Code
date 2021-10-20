@@ -1,15 +1,13 @@
-#File scripthello.py
-#Program takes your name and prints it out by saying hello.
-#Input: Your name
-#Output: Hello + "Your Name"
-#Jancarlos Rodriguez
-#20210908
 
 def main():
-    #Saves your name under the variable name
-    name = input("What is your name?\n")
+    x = 3
+    x += x * 2
+    name = "Hofstra University"
+    num_st = 3
 
-    #Prints "Hello " and your name.
-    print("Hello " + name + ".")
+    print(x)
+
+    print(name, 'has ' + str(num_st) + ' students')
+
 
 main()
