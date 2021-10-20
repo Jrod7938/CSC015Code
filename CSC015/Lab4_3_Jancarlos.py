@@ -14,7 +14,7 @@ def main():
     #Variable keeps track of how many times the two dices have been rolled
     rolls = 0
 
-    #A dictionary to store the sum of the dice values
+    #A dictionary to store the sum of the dice values 
     dice_rolls = {"2": 0, "3": 0, "4": 0, "5": 0, "6": 0, "7": 0, "8": 0, "9": 0, "10": 0, "11": 0, "12": 0}
     dice_history = {"2": "", "3": "", "4": "", "5": "", "6": "", "7": "", "8": "", "9": "", "10": "", "11": "", "12": ""}
 
