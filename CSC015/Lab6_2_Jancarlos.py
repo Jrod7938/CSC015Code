@@ -1,7 +1,7 @@
 #Jancarlos Rodriguez
 #Lab6 Q2
 #Lab6_2_Jancarlos.py
-#The program prints a table of the integer powers of 10 from 10􏰍􏰎 𝑡𝑜 10􏰎
+#The program prints a table of the integer powers of 10 from -5 to 5
 #20211103
 
 def intpower(x, k):
