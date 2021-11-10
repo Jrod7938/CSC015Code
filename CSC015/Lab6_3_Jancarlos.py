@@ -1,8 +1,9 @@
 #Jancarlos Rodriguez
-#Lab6 Q2
-#Lab6_2_Jancarlos.py
-#The program prints a table of the integer powers of 10 from 10􏰍􏰎 𝑡𝑜 10􏰎
-#20211103
+#Lab6 Q3
+#Lab6_3_Jancarlos.py
+#The program computes the students letter grades by reading a grade scale, student id, and student scores.
+#20211106
+
 
 def getScale():
     prev_num = 0
@@ -23,9 +24,6 @@ def getScale():
                 print("Enter a integer between 0 and 100 and greater than the previous number")
         except ValueError:
             print("Enter a integer between 0 and 100 and greater than the previous number")
-
-        
-            
 
     return scale
 
@@ -53,24 +51,47 @@ def getData():
 
 
 def setGrade(scale, a_score):
-    #Fix
-    return -1
+    if a_score > scale[3]:
+        letter_grade = "A"
+    elif a_score <= scale[3] and a_score > scale[2]:
+        letter_grade = "B"
+    elif a_score <= scale[2] and a_score > scale[1]:
+        letter_grade = "C"
+    elif a_score <= scale[1] and a_score > scale[0]:
+        letter_grade = "D"
+    else:
+        letter_grade = "F"
+    return letter_grade
 
+def average(scores):
+    return sum(scores.values()) / len(scores)
 
+def printScale(scale):
+    print(f"A       score > {scale[3]}")
+    print(f"B {scale[3] - 1} >= score > {scale[2]}")
+    print(f"C {scale[2] - 1} >= score > {scale[1]}")
+    print(f"D {scale[1] - 1} >= score > {scale[0]}")
+    print(f"F {scale[0] - 1} >= score")
 
+def printGrades(grades):
+    print("   ID    |   Grade   ")
+    for values in grades:
+        print(f"   {values}   |   {grades[values]} ")
 
 def main():
     scale = getScale()
-    print(scale)
 
-    data = getData()
-    print(data)
+    scores = getData()
 
-    grades = {}
-    for values in range(len(data)):
-        grades[data[values]] = setGrade(scale[values], data[values])
+    grades = dict.fromkeys(scores)
 
-    print(grades)
+    for values in scores:
+        grades[values] = setGrade(scale, scores[values])
+
+    print(f"The Average Score is {average(scores)}")
+
+    printScale(scale)
+    printGrades(grades)
 
 
 
