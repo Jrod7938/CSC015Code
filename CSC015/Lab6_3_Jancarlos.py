@@ -12,15 +12,20 @@ def getScale():
         num = input("Enter a integer between 0 and 100: ")
 
         if num == "":
-            return print("User Canceled")
-        else:
+            print("User Canceled")
+            quit()
+        try:
             num = int(num)
-
-        if num < 0 or num > 100 or num <= prev_num:
+            if num >= 0 and num <= 100 and num > prev_num:
+                scale.append(num)
+                prev_num = num
+            else:
+                print("Enter a integer between 0 and 100 and greater than the previous number")
+        except ValueError:
             print("Enter a integer between 0 and 100 and greater than the previous number")
-        else:
-            scale.append(num)
-            prev_num = num
+
+        
+            
 
     return scale
 
@@ -30,10 +35,16 @@ def getData():
 
     while data != "":
         temp = data.split()
+
+        try:
+            val1 = int(temp[0])
+            val2 = int(temp[1])
     
-        if (int(temp[0]) > 99) and (int(temp[0]) < 1000) and (int(temp[1]) > -1) and (int(temp[1]) < 101):
-            scores[temp[0]] = int(temp[1])
-        else:
+            if (val1 > 99) and (val1 < 1000) and (val2 > -1) and (val2 < 101):
+                scores[temp[0]] = val2
+            else:
+                print("Enter a 3 digit ID and a 2 digit Score")
+        except :
             print("Enter a 3 digit ID and a 2 digit Score")
 
         data = input("Enter ID and Score: ")
@@ -41,14 +52,27 @@ def getData():
     return scores
 
 
-def getGrade(scale, a_score):
-    grades = {}
+def setGrade(scale, a_score):
+    #Fix
+    return -1
 
 
 
 
 def main():
-    print(getScale())
-    print(getData())
+    scale = getScale()
+    print(scale)
+
+    data = getData()
+    print(data)
+
+    grades = {}
+    for values in range(len(data)):
+        grades[data[values]] = setGrade(scale[values], data[values])
+
+    print(grades)
+
+
+
 
 main()
