@@ -36,25 +36,25 @@ def getScale():
 # Return: a dictionary with  the student's ID as the key and their score as the value
 def getData():
     data = input("Enter ID and Score: ")
-    scores = {}
+    grades = {}
 
     while data != "": #While loop runs if the user does not input an empty string
-        temp = data.split() #turns the string into a list
+        temp = entryline.split() #turns the string into a list
 
         try: #check to see if the list can be turned into numbers
             val1 = int(temp[0])
             val2 = int(temp[1])
     
             if (val1 > 99) and (val1 < 1000) and (val2 > -1) and (val2 < 101):
-                scores[temp[0]] = val2
+                grades[temp[0]] = val2
             else:
                 print("Enter a 3 digit ID and a 2 digit Score")
         except : #if list cannot be turned into numbers then user input was incorrect
             print("Enter a 3 digit ID and a 2 digit Score") #Tells the user to correct their input
 
-        data = input("Enter ID and Score: ")
+        entryline = input("Enter ID and Score: ")
         
-    return scores #returns the completed dictionaryh with the student's ID as the key and their score as the value
+    return grades #returns the completed dictionaryh with the student's ID as the key and their score as the value
 
 # -----------------------------------------------------------------
 # Function setGrade(scale, a_score)
