@@ -86,61 +86,28 @@ def getData():
     entryline = input("Enter ID and score separated by space, or hit enter to quit: ")
                  
     while  entryline != '':
-       # write  the code to process a line entered
-       # if a valid record entered, store the record in the dictionary grades.
-       # else print Invalid entry.
+        temp = entryline.split() #turns the string into a list
+
+        try: #check to see if the list can be turned into numbers
+            val1 = int(temp[0])
+            val2 = int(temp[1])
     
-       entryline = input("Enter ID and score separated by space, or hit enter to quit: ")
+            if (val1 > 99) and (val1 < 1000) and (val2 > -1) and (val2 < 101):
+                grades[temp[0]] = val2
+            else:
+                print("Enter a 3 digit ID and a 2 digit Score")
+        except : #if list cannot be turned into numbers then user input was incorrect
+            print("Enter a 3 digit ID and a 2 digit Score") #Tells the user to correct their input
+
+        entryline = input("Enter ID and Score: ")
         
-    return grades
+    return grades #returns the completed dictionary with the student's ID as the key and their score as the value
     
 
 def main():
     scale = getScale()
     print(scale)
     grades = getData()
+    print(grades)
     return
 main()
-
-======================================================================================
-If done implement functions to be used n Hangman game
-
-getGuess(guessed )
-       Ask the user to enter a letter form the keyboard 
-       Do input validation
-       Parameter: guessed is a string of used  letters,
-       Returns: a lower case letter
-----------------------------------
-
-updateHiddenWord(word, hidden, letter)
-Purpose: Update hidden string.
-    Given a secret word word, a hidden string (of dashes and leter possibly letters), and
-    a letter, replace - with the letter at the places where the letter matches word.
-
-Parameters:                                          
-   Word is the secret word
-   Hidden is the hidden word
-   Letter is the guessed letter
-Return: the updated hidden word
-----------------------------------
-
-printScore(word, hidden)
-   print Winner or Loosed based on hidden content
-   if there are dashes in hiddent --> Losser, otherwise Winner
-   If looser print the secret word
-  
-
-Hangman game
-
-Set
-   Secret word
-   Max number guesses
-   Hidden word, all letters in the secret word are dashed
-   guessed       is a string of letters already used
-   count           is a counter of number guesses used
-Repeatedly  (as long as guesses left or hidden word not revealed)
-   ask user to guess a new letter
-   Do input validation to read a letter
-   Update the hidden word, replace dashes with letter (if guessed)
-   Update guessed string and update count
-   Print the score
