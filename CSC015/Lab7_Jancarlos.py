@@ -1,113 +1,82 @@
-# ---- Function Definitions ---------------------------------------------
+#Jancarlos Rodriguez
+#Lab7 
+#Lab7_Jancarlos.py
+#Implementing 3 functions and using one main() driver
+#20211201
 
-# Function to convert a list to list of ints. If successfull it changes the list
-# Parameters: list lst
-# Return: True if list converted successfully and False otherwise
-# Note: if a list item cannot be converted to integer (ValueError), the
-# function will not give run time error, it returns False. The caller can
-# check the returned value and process it accordingly
+#Function acronym()- Given users input, an acronym is formed form the first letters of all words in the unput that start with a capital letter.
+#Parameters: N/A
+#Input: A User string 
+#Returns: A string with the acronym of the user's input
+def acronym():
+    user_phrase = input("Enter Phrase: ")
+    phrase = user_phrase.split()
 
-def list2int(lst):
-    for i in range(len(lst)):
-        try:
-            lst[i] = int(lst[i])
-        except ValueError:
-            return False
-    return True
+    phrase_acronym = []
 
-# Predicate function to check if a list of numbers is strictly increasing
-# Parameters: list lst, nonempty 
-# Return: True if list strictly increasing and False otherwise
+    #For every item in the list, check if their first letter is capitalized.
+    for i in range(len(phrase)):
+        if phrase[i][0].isupper():
+            #If the first letter of the item is capitalized, add it to the phrase_acronym list 
+            phrase_acronym += phrase[i][0]
+    #Joins all the items in phrase_acronym list and assigns it to complete_acronym
+    complete_acronym = "".join(phrase_acronym)
 
-def isIncreasing(lst):
-    num = lst[0]
-    for i in lst:
-        if i + 1 < num: #If the next number is less then the previous, return false
-            return False     
-    return True #Return True if next number is greater then the previous
+    return complete_acronym #Acronym is returned
 
-# Predicate function to check if  list elements are within specified interval
-# Parameters: list lst,  and numbers l and h , l<=h 
-# Return: True if all elements are between l and h, included and false otherwise
-
-def isInInterval(lst, l, h):
-    listRange = list(range(l, h +1))
-    for i in lst:
-      if i not in listRange:
-        return False
-    return True
-
-# Function to read a grade scale from keyboard
-# Parameters: none
-# Return: list scale, of length 4 of strictly increasing order, all values are
-#          between 0 and 100
-
-def getScale():
-    print("Enter dividers for grade scale:\n"
-          "    Four numbers between 0 and 100 in strictly increasing order.\n"
-          "    When prompt, enter the numbers in order separated by space.\n")
-    scale = []
+#Function processList() takes in a list of numbers and returns a sorted list with all non-negative distinct values
+#Parameters: lst  = a list of numbers
+#Input: N/A
+#Returns: a new list newlist consisting of all non‐negative distinct values in lst sorted in ascending order
+def processList(lst):
+    newlist = []
     
-    # read the input and store in string scale
-    scaleInput = input("Enter Numbers: ")
-    scale = scaleInput.split()
+    #Checks every number in lst is non-negative and not in newlist already
+    for number in lst:
+        if (number >= 0) and (number not in newlist):
+            #Adds the number to newlist
+            newlist.append(number)
+    #Sorts the list from smallest number to largest
+    newlist.sort()        
+   
+    return newlist #returns list
+
+#Function wordCount() takes as a parameter a list of words called tokens and builds and returns a dictionary with records word:count
+#Parameters: list of words
+#Input: N/A
+#Return: Dictionary with records of word:count
+def wordCount(tokens):
+    record = {}
+
+    #For every word in tokens
+    for word in tokens:
+        #If the word is not in the dictionary record, add it to the dictionary
+        if word not in record:
+            record[str(word)] = 1
+        else: #Word is in the dictionary, so add 1
+            record[str(word)] += 1
     
-    #Check to see if input can be converted to int, if input is between scale 0-100, if the length of input converted to list is = to 4, and input has increasing numbers
-    while list2int(scale) == False or isInInterval(scale, 0, 100) == False or len(scale) != 4 or isIncreasing(scale) == False:
-        scaleInput = input("Invalid Scale\nEnter Numbers: ")
-        scale = scaleInput.split()    
-    return scale #Returns scale
+    return record #Returns dictionary
 
-# Predicate function to test if a number is in an interval [l, h]
-# Parameters: number to test and interval limita l and  h
-# Return: True if l<=number<=h and False otherwise
-
-def inInterval(number, l, h):
-    # write the code, make sure you do not return always True, take care of the below return
-    rangeList = list(range(l, h + 1))
-    if number in rangeList: #If the number is in the range between l and h return true
-      return True
-    return False #Return false if number is not in range
-
-# Function to input student IDs and test scores 
-# Parameters: none
-# Return: dictionary grades{} with records id:score
-
-def getData():
-    print("Enter on one line, student ID and test score, separated by space.\n"
-          "Continue this way with all students.\n"
-          "When done just hit enter.\n"
-          "Valid IDs are integers between 100 and 999 (included).\n"
-          "Valid scores are between 0 and 100 (included).\n"
-          "If you entered invalid ID or score per student you must re-enter"
-          "correct values.\n")
-          
-    grades = {}
-    entryline = input("Enter ID and score separated by space, or hit enter to quit: ")
-                 
-    while  entryline != '':
-        temp = entryline.split() #turns the string into a list
-
-        try: #check to see if the list can be turned into numbers
-            val1 = int(temp[0])
-            val2 = int(temp[1])
-    
-            if (val1 > 99) and (val1 < 1000) and (val2 > -1) and (val2 < 101):
-                grades[temp[0]] = val2
-            else:
-                print("Enter a 3 digit ID and a 2 digit Score")
-        except : #if list cannot be turned into numbers then user input was incorrect
-            print("Enter a 3 digit ID and a 2 digit Score") #Tells the user to correct their input
-
-        entryline = input("Enter ID and Score: ")
-        
-    return grades #returns the completed dictionary with the student's ID as the key and their score as the value
-    
-
+#Function main() is the driver for the program
 def main():
-    scale = getScale()
-    print(scale)
-    grades = getData()
-    print(grades)
-    return
-main()
+
+    #Question 1:
+    print(acronym())
+
+    #Question 2:
+    list_numbers = [10, -7, 4, 39, -6, 12, 2]
+    print(processList(list_numbers))
+
+    #Question 3
+    wordcount_text = input("Type Words: ")
+    wordcount_list = wordcount_text.split()
+
+    #Saves the returned dictionary in the variable word_count
+    word_count = wordCount(wordcount_list)
+
+    #Prints the Key and Count of every value in the dictionary
+    for key in word_count:
+        print(f"({key}, {word_count[key]})", end = ", ")
+
+main() #Call to main
