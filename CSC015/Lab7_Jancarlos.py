@@ -68,7 +68,7 @@ def main():
     list_numbers = [10, -7, 4, 39, -6, 12, 2]
     print(processList(list_numbers))
 
-    #Question 3
+    #Question 3 & 4
     wordcount_text = input("Type Words: ")
     wordcount_list = wordcount_text.split()
 
@@ -76,7 +76,6 @@ def main():
     word_count = wordCount(wordcount_list)
 
     #Prints the Key and Count of every value in the dictionary
-    for key in word_count:
-        print(f"({key}, {word_count[key]})", end = ", ")
+    print([(k, word_count[k]) for k in word_count])
 
 main() #Call to main
